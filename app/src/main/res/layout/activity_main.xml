@@ -9,17 +9,76 @@
     <LinearLayout
         android:id="@+id/llMain"
         android:orientation="vertical"
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:weightSum="100">
+        <LinearLayout
+            android:id="@+id/llScanNow"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnScanNow"
+            <Button
+                android:id="@+id/btnScanNow"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:textColor="@android:color/white"
+                android:text="Scan now"
+                android:textSize="30dp"
+                android:background="@drawable/bg_layout_round"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llRecents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="Scan now"
-            android:background="@drawable/bg_layout_round"
+            android:orientation="vertical"
+
+            />
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/llRecentsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recents"
+                android:textSize="30dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_history_24"
+                app:tint="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ImageButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/btnClearList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:tint="@android:color/white"
+            android:src="@drawable/ic_baseline_delete_24"
             />
 
 

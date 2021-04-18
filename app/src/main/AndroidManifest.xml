@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanResultDialog"></activity>
+        <activity android:name=".WebviewActivity"></activity>
+        <activity android:name=".ScanResultDialog" />
         <activity android:name=".CodeScannerActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

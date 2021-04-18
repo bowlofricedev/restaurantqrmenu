@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +35,31 @@ public class ScanResultDialog extends AppCompatDialog {
             dismiss();
         });
         //noinspection ConstantConditions
-        findViewById(R.id.close).setOnClickListener(v -> dismiss());
+        findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //volvemos a inicio
+                Intent myIntent = new Intent(getContext(), MainActivity.class);
+                getContext().startActivity(myIntent);
+            }
+        });
+//        findViewById(R.id.close).setOnClickListener(v -> dismiss());
+
+        findViewById(R.id.open).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //abrimos url en el navegador
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(result.getText()));
+//                getContext().startActivity(browserIntent);
+
+                //abrimos en app embedida la url
+                Intent intentWB = new Intent(getContext(), WebviewActivity.class);
+                intentWB.putExtra("url", result.getText());
+                getContext().startActivity(intentWB);
+            }
+        });
+
+
     }
 
     private static int resolveDialogTheme(@NonNull Context context) {

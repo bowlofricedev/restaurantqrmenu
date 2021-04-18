@@ -30,8 +30,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //abrimos scanner
                 Intent myIntent = new Intent(MainActivity.this, CodeScannerActivity.class);
                 MainActivity.this.startActivity(myIntent);
+
+                //abrimos webview
+//                Intent myIntent2 = new Intent(MainActivity.this, WebviewActivity.class);
+//                MainActivity.this.startActivity(myIntent2);
 
 
 
