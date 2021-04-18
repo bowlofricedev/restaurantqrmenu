@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Escaner QR Restaurantes</string>
+    <string name="scanner_error">Scanner error: %s</string>
+    <string name="close">Close</string>
+    <string name="copy">Copy</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="scan_result">Scan result</string>
+    <string name="code_scanner">Code Scanner</string>
+
+</resources>
