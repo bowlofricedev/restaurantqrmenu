@@ -29,7 +29,8 @@
                 android:layout_height="match_parent"
                 android:text="Ver Historial"
                 android:textColor="@color/colorBlanco"
-                android:background="@drawable/bg_layout_round"
+                android:drawableRight="@drawable/ic_baseline_history_24_white"
+                android:backgroundTint="@color/colorPrimary"
                 />
 
         </LinearLayout>
