@@ -1,0 +1,132 @@
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/swipe"
+    app:leftEdgeSwipeOffset="0dp"
+    app:rightEdgeSwipeOffset="0dp"
+    android:layout_height="wrap_content"
+    tools:ignore="MissingClass">
+
+
+    <LinearLayout
+        android:id="@+id/bottom_wraper"
+        android:layout_width="240dp"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/Edit"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#1077C8"
+            android:gravity="center"
+            android:text=""
+            android:src="@drawable/ic_baseline_edit_24"
+            android:tint="@color/colorBlanco"
+            android:textColor="#fff"/>
+
+
+
+        <ImageButton
+            android:id="@+id/Delete"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#D33131"
+            android:gravity="center"
+            android:text=""
+            android:tint="@color/colorBlanco"
+            android:src="@drawable/ic_baseline_delete_24"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_wrapper1"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+        <ImageButton
+            android:id="@+id/btnLocation"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:src="@android:drawable/ic_menu_info_details"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#80000000"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="7dp"
+            android:paddingTop="8dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="8dp"
+            android:weightSum="100"
+
+            >
+
+            <ImageView
+                android:id="@+id/documentoIconProfe"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_baseline_link_24"
+                android:transitionName="avatar"
+                android:layout_weight="3"
+                app:tint="@color/colorBlanco" />
+
+            <TextView
+                android:id="@+id/tvTituloEnlace"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Ejemplo"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/colorBlanco"
+                android:layout_weight="97"/>
+            <!--            <View-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="0dp"-->
+            <!--                android:layout_weight="1"/>-->
+
+
+            <!--            <RelativeLayout-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_weight="10"-->
+            <!--                >-->
+
+            <!--                <ImageView-->
+
+            <!--                    android:id="@+id/imgEditDocumentoProfe"-->
+            <!--                    android:layout_width="30dp"-->
+            <!--                    android:layout_height="30dp"-->
+            <!--                    android:src="@drawable/ic_baseline_edit_24"-->
+            <!--                    android:layout_alignParentEnd="true"-->
+            <!--                    android:tint="@color/colorBlanco" />-->
+            <!--            </RelativeLayout>-->
+
+            <!--    android:layout_width="@dimen/list_item_avatar_size"-->
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E6E6E6" />
+    </LinearLayout>
+
+</com.daimajia.swipe.SwipeLayout>

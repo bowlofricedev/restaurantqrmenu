@@ -5,27 +5,68 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
+import com.bowlofricedev.restaurantqrmenu.tools.DatabaseHelper;
 import com.budiyev.android.codescanner.CodeScanner;
 
 public class CodeScannerActivity extends AppCompatActivity {
     private static final int RC_PERMISSION = 10;
     private CodeScanner mCodeScanner;
     private boolean mPermissionGranted;
+    private Button btnDisplayList;
+    DatabaseHelper mDatabaseHelper;
+
+    //TODO: PERSONALIZAR VISTA LAND - HORIZONTAL
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_scanner);
+        
+        initComponents();
+
         mCodeScanner = new CodeScanner(this, findViewById(R.id.scanner));
         mCodeScanner.setDecodeCallback(result -> runOnUiThread(() -> {
-            ScanResultDialog dialog = new ScanResultDialog(this, result);
-            dialog.setOnDismissListener(d -> mCodeScanner.startPreview());
-            dialog.show();
+
+            //cuando tiene el result por defecto abre dialog
+//            ScanResultDialog dialog = new ScanResultDialog(this, result);
+//            dialog.setOnDismissListener(d -> mCodeScanner.startPreview());
+//            dialog.show();
+
+            //lo cambiamos a que cuando tenga el result lo guarde en bd y se abra
+
+            //guardamos en bbdd
+            //preparamos el enlace que acabamos de crear
+            Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n");
+
+            //inicializamos db
+            mDatabaseHelper = new DatabaseHelper(getApplicationContext());
+            boolean insertData = mDatabaseHelper.addData(enlace);
+
+            if (insertData) {
+
+                //si se ha insertado bien lo abrimos
+                openLink(enlace.getUrl());
+//                Intent intentLista = new Intent(getApplicationContext(), ListDataActivity.class);
+//                getApplicationContext().startActivity(intentLista);
+
+
+            } else {
+
+            }
+
+
+
+
+
         }));
         mCodeScanner.setErrorCallback(error -> runOnUiThread(
                 () -> Toast.makeText(this, getString(R.string.scanner_error, error), Toast.LENGTH_LONG).show()));
@@ -39,6 +80,33 @@ public class CodeScannerActivity extends AppCompatActivity {
         } else {
             mPermissionGranted = true;
         }
+        
+        
+        
+        
+        
+    }
+
+    //metodo que abre en webview el enlace
+    private void openLink(String url) {
+        Intent intentWB = new Intent(getBaseContext(), WebviewActivity.class);
+        intentWB.putExtra("url", url);
+        getApplicationContext().startActivity(intentWB);
+    }
+
+    private void initComponents() {
+
+        btnDisplayList = findViewById(R.id.btnDisplayList);
+        btnDisplayList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentLista = new Intent(CodeScannerActivity.this, ListDataActivity.class);
+                CodeScannerActivity.this.startActivity(intentLista);
+
+            }
+        });
+
     }
 
     @Override

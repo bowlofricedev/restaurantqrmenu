@@ -1,11 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <com.budiyev.android.codescanner.CodeScannerView
-        android:id="@+id/scanner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</FrameLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <com.budiyev.android.codescanner.CodeScannerView
+            android:id="@+id/scanner"
+            android:layout_width="match_parent"
+            android:layout_weight="96"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="4"
+            >
+            <Button
+                android:id="@+id/btnDisplayList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Ver Historial"
+                android:textColor="@color/colorBlanco"
+                android:background="@drawable/bg_layout_round"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

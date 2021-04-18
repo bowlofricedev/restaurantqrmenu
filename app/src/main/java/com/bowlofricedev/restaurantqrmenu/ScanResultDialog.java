@@ -15,9 +15,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
+import com.bowlofricedev.restaurantqrmenu.tools.DatabaseHelper;
 import com.google.zxing.Result;
 
 public class ScanResultDialog extends AppCompatDialog {
+
+    DatabaseHelper mDatabaseHelper;
+
+
     public ScanResultDialog(@NonNull Context context, @NonNull Result result) {
         super(context, resolveDialogTheme(context));
         setTitle(R.string.scan_result);
@@ -56,6 +62,32 @@ public class ScanResultDialog extends AppCompatDialog {
                 Intent intentWB = new Intent(getContext(), WebviewActivity.class);
                 intentWB.putExtra("url", result.getText());
                 getContext().startActivity(intentWB);
+            }
+        });
+
+
+        //AÑADIR A LA LISTA
+        findViewById(R.id.addToList).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //preparamos el enlace que acabamos de crear
+                Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n");
+
+                //inicializamos db
+                mDatabaseHelper = new DatabaseHelper(getContext());
+                boolean insertData = mDatabaseHelper.addData(enlace);
+
+                if (insertData) {
+
+                    Intent intentLista = new Intent(getContext(), ListDataActivity.class);
+                    getContext().startActivity(intentLista);
+
+
+                } else {
+
+                }
+
             }
         });
 

@@ -28,7 +28,14 @@
                 android:textSize="30dp"
                 android:background="@drawable/bg_layout_round"
                 />
-
+            <Button
+                android:id="@+id/btnDisplayListMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="DISPLAY LIST"
+                android:background="@drawable/bg_layout_round"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -72,11 +79,12 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <ImageButton
+
             android:layout_marginTop="10dp"
             android:id="@+id/btnClearList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/holo_red_dark"
+            android:backgroundTint="@android:color/holo_red_light"
             android:tint="@android:color/white"
             android:src="@drawable/ic_baseline_delete_24"
             />

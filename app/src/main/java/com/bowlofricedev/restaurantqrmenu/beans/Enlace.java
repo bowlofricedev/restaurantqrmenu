@@ -3,13 +3,13 @@ package com.bowlofricedev.restaurantqrmenu.beans;
 public class Enlace {
 
     private int id;
-    private String name, url, type;
+    private String name, url, type, fav;
 
-    public Enlace(int id, String name, String url, String type) {
-        this.id = id;
+    public Enlace(String name, String url, String type, String fav) {
         this.name = name;
         this.url = url;
         this.type = type;
+        this.fav = fav;
     }
 
     public Enlace() {
@@ -45,5 +45,13 @@ public class Enlace {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getFav() {
+        return fav;
+    }
+
+    public void setFav(String fav) {
+        this.fav = fav;
     }
 }
