@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.Animator;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import com.bowlofricedev.restaurantqrmenu.adapter.AdapterEnlacesSwipe;
 import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
 import com.bowlofricedev.restaurantqrmenu.tools.DatabaseHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.nambimobile.widgets.efab.FabOption;
 
 import java.util.ArrayList;
 
@@ -26,10 +30,13 @@ public class ListDataActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private TextView emptyEnlaces;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_data);
+
+        initComponents();
 
         rvEnlaces = (RecyclerView) findViewById(R.id.rvEnlaces);
         emptyEnlaces = findViewById(R.id.emptyEnlaces);
@@ -38,6 +45,16 @@ public class ListDataActivity extends AppCompatActivity {
         populateRV();
 
     }
+
+    private void initComponents() {
+
+
+
+
+
+    }
+
+
 
     private void populateRV() {
         //recogemos datos y llenamos la lista

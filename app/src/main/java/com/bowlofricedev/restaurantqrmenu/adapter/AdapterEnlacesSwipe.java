@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bowlofricedev.restaurantqrmenu.R;
 import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
+import com.bowlofricedev.restaurantqrmenu.tools.DatabaseHelper;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
@@ -25,10 +26,12 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
 
     private Context mContext;
     private ArrayList<Enlace> enlaceList;
+    DatabaseHelper mDatabaseHelper;
 
     public AdapterEnlacesSwipe(Context context, ArrayList<Enlace> objects) {
         this.mContext = context;
         this.enlaceList = objects;
+        mDatabaseHelper = new DatabaseHelper(context);
     }
 
 
@@ -135,6 +138,8 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
     private void deleteEnlace(Enlace enlaceDelete, int position, SimpleViewHolder viewHolder) {
 
         //TODO: ELIMINAR DE LA BBDD
+
+        mDatabaseHelper.deleteEnlace(enlaceDelete.getId());
         mItemManger.removeShownLayouts(viewHolder.swipeLayout);
         enlaceList.remove(position);
         notifyItemRemoved(position);

@@ -40,6 +40,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addData(Enlace item) {
+
+        //TODO: COMPROBAR QUE NO HAYA SIDO YA VISITADO
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, item.getName());
@@ -67,6 +70,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM "+TABLE_NAME;
         Cursor data = db.rawQuery(query, null);
         return data;
+    }
+
+    public boolean deleteEnlace(int id){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        return db.delete(TABLE_NAME, COL1 + "=" + id, null) > 0;
+
+
+    }
+
+    public boolean deleteAllRecords(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, null, null) > 0;
+
+        //TODO: CONTROLAR QUE SE HACE BIEN
     }
 
 }
