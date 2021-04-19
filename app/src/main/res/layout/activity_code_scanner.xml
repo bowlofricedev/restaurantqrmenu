@@ -25,9 +25,10 @@
             >
             <Button
                 android:id="@+id/btnDisplayList"
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Ver Historial"
+                android:text="View History"
                 android:textColor="@color/colorBlanco"
                 android:drawableRight="@drawable/ic_baseline_history_24_white"
                 android:backgroundTint="@color/colorPrimary"

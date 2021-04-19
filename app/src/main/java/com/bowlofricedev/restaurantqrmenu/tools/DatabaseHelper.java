@@ -85,7 +85,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, null, null) > 0;
 
-        //TODO: CONTROLAR QUE SE HACE BIEN
     }
 
 }
