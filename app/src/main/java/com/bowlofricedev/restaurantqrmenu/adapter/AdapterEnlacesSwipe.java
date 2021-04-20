@@ -19,6 +19,7 @@ import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
 import com.bowlofricedev.restaurantqrmenu.tools.DatabaseHelper;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_swipe_enlace, parent, false);
+
         return new SimpleViewHolder(view);
     }
 
@@ -53,6 +55,7 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Left, viewHolder.swipeLayout.findViewById(R.id.bottom_wrapper1));
 
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.bottom_wraper));
+
 
 
         viewHolder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
@@ -93,6 +96,18 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
                 Toast.makeText(mContext, " Click : " + item.getName(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        viewHolder.favoriteButton.setFavorite(item.getFav().equals("s"));
+        viewHolder.favoriteButton.setOnFavoriteChangeListener(
+                new MaterialFavoriteButton.OnFavoriteChangeListener() {
+                    @Override
+                    public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                        item.setFav(favorite ? "s":"n");
+                        mDatabaseHelper.updateEnlace(item.getId(), item);
+                    }
+                });
+
+
 
 
         viewHolder.Edit.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +178,7 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
         public TextView txtTitle;
         public ImageButton Delete;
         public ImageButton Edit;
+        MaterialFavoriteButton favoriteButton;
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
@@ -171,6 +187,10 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
             txtTitle = (TextView) itemView.findViewById(R.id.tvTituloEnlace);
             Delete = (ImageButton) itemView.findViewById(R.id.Delete);
             Edit = (ImageButton) itemView.findViewById(R.id.Edit);
+
+            //Boton favorito
+            favoriteButton = (MaterialFavoriteButton) itemView.findViewById(R.id.favoriteButton);
+
         }
     }
 }

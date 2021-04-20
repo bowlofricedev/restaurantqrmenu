@@ -79,15 +79,28 @@
 
             >
 
-            <ImageView
-                android:id="@+id/documentoIconProfe"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_baseline_link_24"
-                android:transitionName="avatar"
-                android:layout_weight="3"
-                app:tint="@color/colorBlanco" />
+<!--            <ToggleButton-->
+<!--                android:id="@+id/myToggleButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:textOff=""-->
+<!--                android:textOn="" />-->
+            <com.github.ivbaranov.mfb.MaterialFavoriteButton
+                android:id="@+id/favoriteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mfb_animate_favorite="true"
+                app:mfb_animate_unfavorite="false"
+                app:mfb_bounce_duration="300"
+                app:mfb_color="white"
+                app:mfb_padding="12"
+                app:mfb_rotation_angle="360"
+                app:mfb_rotation_duration="400"
+                app:mfb_size="48"
+
+                app:mfb_type="star" />
 
             <TextView
                 android:id="@+id/tvTituloEnlace"
@@ -97,6 +110,16 @@
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:textColor="@color/colorBlanco"
                 android:layout_weight="97"/>
+
+            <ImageView
+                android:id="@+id/documentoIconProfe2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="3"
+                android:src="@drawable/ic_baseline_link_24"
+                android:transitionName="avatar"
+                app:tint="@color/colorBlanco" />
             <!--            <View-->
             <!--                android:layout_width="0dp"-->
             <!--                android:layout_height="0dp"-->

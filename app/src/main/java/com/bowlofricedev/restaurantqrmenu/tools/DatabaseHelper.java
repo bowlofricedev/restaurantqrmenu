@@ -81,6 +81,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean updateEnlace(int id, Enlace item){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL2, item.getName());
+        contentValues.put(COL3, item.getUrl());
+        contentValues.put(COL4, item.getType());
+        contentValues.put(COL5, item.getFav());
+
+        return db.update(TABLE_NAME, contentValues, COL1 + "=" + id, null) > 0;
+
+
+    }
+
     public boolean deleteAllRecords(){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, null, null) > 0;
