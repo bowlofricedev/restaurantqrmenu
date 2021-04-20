@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.AndroidRuntimeException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bowlofricedev.restaurantqrmenu.R;
+import com.bowlofricedev.restaurantqrmenu.WebviewActivity;
 import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
 import com.bowlofricedev.restaurantqrmenu.tools.DatabaseHelper;
 import com.daimajia.swipe.SwipeLayout;
@@ -93,7 +97,14 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
         viewHolder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, " Click : " + item.getName(), Toast.LENGTH_SHORT).show();
+                Intent intentWB = new Intent(mContext, WebviewActivity.class);
+                intentWB.putExtra("url", item.getUrl());
+                try{
+                    mContext.startActivity(intentWB);
+                } catch (AndroidRuntimeException e){
+                    intentWB.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intentWB);
+                }
             }
         });
 
