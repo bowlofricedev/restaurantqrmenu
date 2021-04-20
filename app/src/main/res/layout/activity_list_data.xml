@@ -20,21 +20,26 @@
             android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="10dp"
-                android:text="Recents"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="30dp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:text="Recents"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="30dp"-->
+<!--                android:textStyle="bold" />-->
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_history_24"
-                app:tint="@color/colorPrimaryDark" />
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/ic_baseline_history_24"-->
+<!--                app:tint="@color/colorPrimaryDark" />-->
+            <Spinner
+                android:id="@+id/spinnerOrdenes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/ORDENES" />
 
         </LinearLayout>
 

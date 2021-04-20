@@ -4,17 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.animation.Animator;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +19,6 @@ import com.bowlofricedev.restaurantqrmenu.adapter.AdapterEnlacesSwipe;
 import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
 import com.bowlofricedev.restaurantqrmenu.tools.DatabaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.nambimobile.widgets.efab.FabOption;
 
 import java.util.ArrayList;
 
@@ -37,6 +33,8 @@ public class ListDataActivity extends AppCompatActivity {
     private boolean isFABOpen = false;
     private Animation fab_open, fab_close, rotate_forward, rotate_backward;
     private boolean isfab3Open = false;
+    private Spinner spinnerOrdenes;
+    private String orden, columna;
 
 
     @Override
@@ -50,6 +48,7 @@ public class ListDataActivity extends AppCompatActivity {
         emptyEnlaces = findViewById(R.id.emptyEnlaces);
         mDatabaseHelper = new DatabaseHelper(this);
 
+        spinnerOrdenes = findViewById(R.id.spinnerOrdenes);
         fab = findViewById(R.id.expandable_fab);
         fab2 = findViewById(R.id.fab2);
         fab3 = findViewById(R.id.fab3);
@@ -95,7 +94,29 @@ public class ListDataActivity extends AppCompatActivity {
             }
         });
 
-        populateRV();
+        spinnerOrdenes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i == 0){
+                    columna = DatabaseHelper.COL1;
+                    orden = "DESC";
+                }
+                else if (i == 1){
+                    columna = DatabaseHelper.COL5;
+                    orden = "ASC";
+                }
+                populateRV();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                columna = DatabaseHelper.COL1;
+                orden = "DESC";
+                populateRV();
+            }
+        });
+
+        //populateRV();
 
     }
 
@@ -115,7 +136,7 @@ public class ListDataActivity extends AppCompatActivity {
 
     private void populateRV() {
         //recogemos datos y llenamos la lista
-        Cursor data = mDatabaseHelper.getData();
+        Cursor data = mDatabaseHelper.getData(columna, orden);
         ArrayList<Enlace> enlacesList = new ArrayList<>();
 
         while (data.moveToNext()) {

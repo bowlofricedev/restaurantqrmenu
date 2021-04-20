@@ -6,5 +6,14 @@
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="scan_result">Scan result</string>
     <string name="code_scanner">Code Scanner</string>
+    <string name="recents">Recents</string>
+    <string name="favorites">Favorites</string>
+
+    <string-array name="ORDENES">
+        <item>@string/recents</item>
+        <item>@string/favorites</item>
+
+
+    </string-array>
 
 </resources>

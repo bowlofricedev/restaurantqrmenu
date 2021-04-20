@@ -13,11 +13,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
     private static final String TABLE_NAME = "enlaces";
-    private static final String COL1 = "ID";
-    private static final String COL2 = "NAME";
-    private static final String COL3 = "URL";
-    private static final String COL4 = "TYPE";
-    private static final String COL5 = "FAV";
+    public static final String COL1 = "ID";
+    public static final String COL2 = "NAME";
+    public static final String COL3 = "URL";
+    public static final String COL4 = "TYPE";
+    public static final String COL5 = "FAV";
 
 
     public DatabaseHelper(Context context) {
@@ -65,10 +65,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     //para recoger datos de la db
-    public Cursor getData(){
+    public Cursor getData(String col, String order){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+TABLE_NAME;
-        Cursor data = db.rawQuery(query, null);
+        Cursor data = db.query(TABLE_NAME, null, null, null, null, null, COL1 + " " + order);
         return data;
     }
 
