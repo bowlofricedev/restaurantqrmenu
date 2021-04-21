@@ -12,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bowlofricedev.restaurantqrmenu.DialogEditEnlace;
 import com.bowlofricedev.restaurantqrmenu.R;
 import com.bowlofricedev.restaurantqrmenu.WebviewActivity;
 import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
@@ -52,6 +54,10 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
         final Enlace item = enlaceList.get(position);
 
         viewHolder.txtTitle.setText(item.getName());
+
+        if(item.getType().equals("PDF")){
+            viewHolder.enlaceIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_pdfviewpager));
+        }
 
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -125,9 +131,7 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
             @Override
             public void onClick(View view) {
 
-                final Activity activity = (Activity) mContext;
-
-//                new DialogNuevoEnlace(view.getContext(), fragmentManager, item, "2"); TODO: hacer
+                new DialogEditEnlace(view.getContext(), item);
             }
         });
 
@@ -189,7 +193,8 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
         public TextView txtTitle;
         public ImageButton Delete;
         public ImageButton Edit;
-        MaterialFavoriteButton favoriteButton;
+        public ImageView enlaceIcon;
+        public MaterialFavoriteButton favoriteButton;
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
@@ -198,6 +203,7 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
             txtTitle = (TextView) itemView.findViewById(R.id.tvTituloEnlace);
             Delete = (ImageButton) itemView.findViewById(R.id.Delete);
             Edit = (ImageButton) itemView.findViewById(R.id.Edit);
+            enlaceIcon = (ImageView) itemView.findViewById(R.id.enlaceIcon);
 
             //Boton favorito
             favoriteButton = (MaterialFavoriteButton) itemView.findViewById(R.id.favoriteButton);

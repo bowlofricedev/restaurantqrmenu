@@ -94,7 +94,7 @@
                 app:mfb_animate_favorite="true"
                 app:mfb_animate_unfavorite="false"
                 app:mfb_bounce_duration="300"
-                app:mfb_color="white"
+                app:mfb_color="@color/colorAmarillo"
                 app:mfb_padding="12"
                 app:mfb_rotation_angle="360"
                 app:mfb_rotation_duration="400"
@@ -112,7 +112,7 @@
                 android:layout_weight="97"/>
 
             <ImageView
-                android:id="@+id/documentoIconProfe2"
+                android:id="@+id/enlaceIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="16dp"
