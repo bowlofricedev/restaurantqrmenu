@@ -74,6 +74,10 @@ public class ScanResultDialog extends AppCompatDialog {
                 //preparamos el enlace que acabamos de crear
                 Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n");
 
+                if(result.getText().contains(".pdf")){
+                    enlace.setType("PDF");
+                }
+
                 //inicializamos db
                 mDatabaseHelper = new DatabaseHelper(getContext());
                 boolean insertData = mDatabaseHelper.addData(enlace);

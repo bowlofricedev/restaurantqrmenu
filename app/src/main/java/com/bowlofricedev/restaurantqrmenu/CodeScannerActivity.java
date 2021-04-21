@@ -48,6 +48,12 @@ public class CodeScannerActivity extends AppCompatActivity {
             //preparamos el enlace que acabamos de crear
             Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n");
 
+            if(result.getText().contains(".pdf")){
+
+                enlace.setType("PDF");
+
+            }
+
             //inicializamos db
             mDatabaseHelper = new DatabaseHelper(getApplicationContext());
             boolean insertData = mDatabaseHelper.addData(enlace);
@@ -55,7 +61,16 @@ public class CodeScannerActivity extends AppCompatActivity {
             if (insertData) {
 
                 //si se ha insertado bien lo abrimos
-                openLink(enlace.getUrl());
+                //si contiene .pdf, abrimos pdfviewer
+                if(enlace.getType().equals("PDF")){
+
+                    openPdf(enlace.getUrl());
+
+                }else{
+                    //si no contiene .pdf abrimos WB
+                    openLink(enlace.getUrl());
+
+                }
 //                Intent intentLista = new Intent(getApplicationContext(), ListDataActivity.class);
 //                getApplicationContext().startActivity(intentLista);
 
@@ -86,6 +101,19 @@ public class CodeScannerActivity extends AppCompatActivity {
         
         
         
+    }
+
+    private void openPdf(String url) {
+
+        Intent intentPDF = new Intent(getBaseContext(), PdfViewerActivity.class);
+        intentPDF.putExtra("url", url);
+        try{
+            getApplicationContext().startActivity(intentPDF);
+        } catch (AndroidRuntimeException e){
+            intentPDF.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(intentPDF);
+        }
+
     }
 
     //metodo que abre en webview el enlace
