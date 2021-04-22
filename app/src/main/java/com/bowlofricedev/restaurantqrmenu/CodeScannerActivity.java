@@ -7,16 +7,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.AndroidRuntimeException;
 import android.view.View;
+import android.view.contentcapture.DataRemovalRequest;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
 import com.bowlofricedev.restaurantqrmenu.tools.DatabaseHelper;
 import com.budiyev.android.codescanner.CodeScanner;
+
+import java.util.ArrayList;
 
 public class CodeScannerActivity extends AppCompatActivity {
     private static final int RC_PERMISSION = 10;
@@ -46,43 +50,65 @@ public class CodeScannerActivity extends AppCompatActivity {
 
             //guardamos en bbdd
             //preparamos el enlace que acabamos de crear
-            Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n");
+            Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n", System.currentTimeMillis());
 
             if(result.getText().contains(".pdf")){
 
                 enlace.setType("PDF");
 
             }
-
-            //inicializamos db
             mDatabaseHelper = new DatabaseHelper(getApplicationContext());
-            boolean insertData = mDatabaseHelper.addData(enlace);
+            Enlace enlaceRepetido = checkRepetido(result.getText());
+            if(enlaceRepetido == null){
+                //inicializamos db
 
-            if (insertData) {
+                boolean insertData = mDatabaseHelper.addData(enlace);
 
-                //si se ha insertado bien lo abrimos
-                //si contiene .pdf, abrimos pdfviewer
-                if(enlace.getType().equals("PDF")){
+                if (insertData) {
 
-                    openPdf(enlace.getUrl());
+                    //si se ha insertado bien lo abrimos
+                    //si contiene .pdf, abrimos pdfviewer
+                    if(enlace.getType().equals("PDF")){
 
-                }else{
-                    //si no contiene .pdf abrimos WB
-                    openLink(enlace.getUrl());
+                        openPdf(enlace.getUrl());
 
-                }
+                    }else{
+                        //si no contiene .pdf abrimos WB
+                        openLink(enlace.getUrl());
+
+                    }
 //                Intent intentLista = new Intent(getApplicationContext(), ListDataActivity.class);
 //                getApplicationContext().startActivity(intentLista);
 
 
-            } else {
+                } else {
 
+                }
             }
+            else{
+                boolean updateEnlace = mDatabaseHelper.updateEnlace(enlaceRepetido.getId(), enlaceRepetido);
+
+                if (updateEnlace) {
+
+                    //si se ha insertado bien lo abrimos
+                    //si contiene .pdf, abrimos pdfviewer
+                    if(enlaceRepetido.getType().equals("PDF")){
+
+                        openPdf(enlaceRepetido.getUrl());
+
+                    }else{
+                        //si no contiene .pdf abrimos WB
+                        openLink(enlaceRepetido.getUrl());
+
+                    }
+//                Intent intentLista = new Intent(getApplicationContext(), ListDataActivity.class);
+//                getApplicationContext().startActivity(intentLista);
 
 
+                } else {
 
-
-
+                }
+            }
         }));
         mCodeScanner.setErrorCallback(error -> runOnUiThread(
                 () -> Toast.makeText(this, getString(R.string.scanner_error, error), Toast.LENGTH_LONG).show()));
@@ -101,6 +127,31 @@ public class CodeScannerActivity extends AppCompatActivity {
         
         
         
+    }
+
+    private Enlace checkRepetido(String url) {
+        Enlace repetido = null;
+        Cursor data = mDatabaseHelper.getData(DatabaseHelper.COL1, "ASC");
+
+
+        while (data.moveToNext()) {
+
+
+            if(data.getString(2).equalsIgnoreCase(url)){
+                repetido = new Enlace();
+
+                repetido.setId(data.getInt(0));
+                repetido.setName(data.getString(1));
+                repetido.setUrl(data.getString(2));
+                repetido.setType(data.getString(3));
+                repetido.setFav(data.getString(4));
+                repetido.setTimeMillis(System.currentTimeMillis());
+            }
+
+        }
+
+        return repetido;
+
     }
 
     private void openPdf(String url) {

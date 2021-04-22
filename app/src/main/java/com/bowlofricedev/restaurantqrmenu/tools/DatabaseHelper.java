@@ -18,6 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL3 = "URL";
     public static final String COL4 = "TYPE";
     public static final String COL5 = "FAV";
+    public static final String COL6 = "TIME";
 
 
     public DatabaseHelper(Context context) {
@@ -27,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 + " TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 + " TEXT )";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 + " TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 + " TEXT, " + COL6 + " INTEGER )";
         db.execSQL(createTable);
 
     }
@@ -49,6 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL3, item.getUrl());
         contentValues.put(COL4, item.getType());
         contentValues.put(COL5, item.getFav());
+        contentValues.put(COL6, item.getTimeMillis());
 
         Log.d(TAG, "addData: Adding " + item + " to " + TABLE_NAME);
 
@@ -68,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getData(String col, String order){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+TABLE_NAME;
-        Cursor data = db.query(TABLE_NAME, null, null, null, null, null, COL1 + " " + order);
+        Cursor data = db.query(TABLE_NAME, null, null, null, null, null, col + " " + order);
         return data;
     }
 
@@ -90,6 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL3, item.getUrl());
         contentValues.put(COL4, item.getType());
         contentValues.put(COL5, item.getFav());
+        contentValues.put(COL6, item.getTimeMillis());
 
         return db.update(TABLE_NAME, contentValues, COL1 + "=" + id, null) > 0;
 

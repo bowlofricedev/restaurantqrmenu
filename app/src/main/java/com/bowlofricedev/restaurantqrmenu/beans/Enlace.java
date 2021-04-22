@@ -4,12 +4,14 @@ public class Enlace {
 
     private int id;
     private String name, url, type, fav;
+    private long timeMillis;
 
-    public Enlace(String name, String url, String type, String fav) {
+    public Enlace(String name, String url, String type, String fav, long timeMillis) {
         this.name = name;
         this.url = url;
         this.type = type;
         this.fav = fav;
+        this.timeMillis = timeMillis;
     }
 
     public Enlace() {
@@ -53,5 +55,13 @@ public class Enlace {
 
     public void setFav(String fav) {
         this.fav = fav;
+    }
+
+    public long getTimeMillis() {
+        return timeMillis;
+    }
+
+    public void setTimeMillis(long timeMillis) {
+        this.timeMillis = timeMillis;
     }
 }

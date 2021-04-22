@@ -72,7 +72,7 @@ public class ScanResultDialog extends AppCompatDialog {
             public void onClick(View v) {
 
                 //preparamos el enlace que acabamos de crear
-                Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n");
+                Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n", System.currentTimeMillis());
 
                 if(result.getText().contains(".pdf")){
                     enlace.setType("PDF");

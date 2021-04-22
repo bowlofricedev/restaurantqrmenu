@@ -98,7 +98,7 @@ public class ListDataActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i == 0){
-                    columna = DatabaseHelper.COL1;
+                    columna = DatabaseHelper.COL6;
                     orden = "DESC";
                 }
                 else if (i == 1){
