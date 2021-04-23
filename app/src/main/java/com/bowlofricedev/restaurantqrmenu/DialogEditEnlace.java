@@ -113,13 +113,13 @@ public class DialogEditEnlace {
 
                 //TODO: hacer mas limpio
                 if (ok) {
-                    Toast toast1 = Toast.makeText(context, "update successful", Toast.LENGTH_SHORT);
+                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.updateOK), Toast.LENGTH_SHORT);
                     toast1.show();
 
                     updateView();
 
                 } else {
-                    Toast toast1 = Toast.makeText(context, "update ERROR", Toast.LENGTH_SHORT);
+                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.updateERROR), Toast.LENGTH_SHORT);
                     toast1.show();
                 }
 
@@ -139,31 +139,35 @@ public class DialogEditEnlace {
             @Override
             public void onClick(View v) {
 
+                String cuerpo = context.getResources().getString(R.string.eliminar_confirmacion_cuerpo);
+                cuerpo = cuerpo + "\n\n"+enlaceDatos.getName();
+                String si = context.getResources().getString(R.string.si);
+                String no = context.getResources().getString(R.string.no);
 
                 new AlertDialog.Builder(context)
                         .setIcon(R.drawable.ic_baseline_delete_24)
-                        .setTitle("Eliminar Enlace")
-                        .setMessage("¿Estas seguro de eliminar el enlace: '" + enlaceDatos.getName() + "'?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.eliminar_confirmacion_titulo)
+                        .setMessage(cuerpo)
+                        .setPositiveButton(si, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //TODO:  deleteEnlace(enlaceDatos);
                                 boolean ok = mDatabaseHelper.deleteEnlace(enlaceDatos.getId());
                                 //TODO: hacer mas limpio
                                 if (ok) {
-                                    Toast toast1 = Toast.makeText(context, "delete successful", Toast.LENGTH_SHORT);
+                                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.deleteOK), Toast.LENGTH_SHORT);
                                     toast1.show();
 
                                     updateView();
 
                                 } else {
-                                    Toast toast1 = Toast.makeText(context, "delete ERROR", Toast.LENGTH_SHORT);
+                                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.deleteERROR), Toast.LENGTH_SHORT);
                                     toast1.show();
                                 }
                             }
 
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -187,7 +191,7 @@ public class DialogEditEnlace {
                     ClipData clip = ClipData.newPlainText("label", binding.txtUrlEnlaceEdit.getText());
                     clipboard.setPrimaryClip(clip);
 
-                    Toast toast1 = Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT);
+                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.copied_to_clipboard), Toast.LENGTH_SHORT);
                     toast1.show();
 
                 }catch (Exception ex){
@@ -200,9 +204,13 @@ public class DialogEditEnlace {
             @Override
             public void onClick(View v) {
 
+                //package name (será en nombre en google play)
+                final String appPackageName = context.getPackageName(); // getPackageName() from Context or Activity object
+
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, binding.txtUrlEnlaceEdit.getText()+" \n Shared by Restaurant QR Menu");
+//                sendIntent.putExtra(Intent.EXTRA_TEXT, binding.txtUrlEnlaceEdit.getText()+" \n Shared by Restaurant QR Menu");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, binding.txtUrlEnlaceEdit.getText() +" \n\nShared by Restaurant QR Menu\nhttps://play.google.com/store/apps/details?id=" + appPackageName);
                 sendIntent.setType("text/plain");
                 context.startActivity(sendIntent);
 
@@ -239,7 +247,7 @@ public class DialogEditEnlace {
                 EditText ed_EditURL = view.findViewById(R.id.ed_EditURL);
 
                 if (TextUtils.isEmpty(ed_EditURL.getText().toString())) {
-                    Toast.makeText(context, "No se ha introducido un nombre válido", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, String.valueOf(R.string.nombrenovalido), Toast.LENGTH_SHORT).show();
 
                 } else {
 

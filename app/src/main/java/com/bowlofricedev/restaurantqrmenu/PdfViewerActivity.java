@@ -47,7 +47,7 @@ public class PdfViewerActivity extends AppCompatActivity implements DownloadFile
         // Si la descarga del PDF ha ido mal...
         String h = e.getMessage();
         Log.d(TAG, "onLoadFailure: ");
-        Toast.makeText(getApplicationContext(), "Ha ocurrido un error en la descarga", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), String.valueOf(R.string.downloadPDFerror), Toast.LENGTH_SHORT).show();
     }
 
     @Override

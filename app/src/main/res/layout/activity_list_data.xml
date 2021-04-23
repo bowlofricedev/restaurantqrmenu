@@ -130,7 +130,7 @@
                     app:efab_color="@color/colorPrimary"
                     app:efab_icon="@drawable/ic_baseline_more_horiz_24"
                     app:efab_iconAnimationRotationDeg="-225"
-                    app:label_text="Actions" />
+                    app:label_text="@string/Acciones" />
 
                 <com.nambimobile.widgets.efab.FabOption
                     android:id="@+id/fab2"
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     app:fab_color="@color/mirojo"
                     app:fab_icon="@drawable/ic_baseline_delete_24_white"
-                    app:label_text="Clean History"
+                    app:label_text="@string/limpiar_historial"
                     app:label_backgroundColor="@color/material_black"
                     app:label_textColor="@color/colorBlanco"/>
 
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     app:fab_color="@color/miverde"
                     app:fab_icon="@drawable/ic_baseline_camera_alt_24_white"
-                    app:label_text="Scan New"
+                    app:label_text="@string/nuevo_escaneo"
                     app:label_backgroundColor="@color/material_black"
                     app:label_textColor="@color/colorBlanco"/>
 

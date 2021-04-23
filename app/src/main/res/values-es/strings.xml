@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="ver_historial">Ver Historial</string>
+    <string name="app_name">Escaner QR Restaurantes</string>
+    <string name="recents">Recientes</string>
+    <string name="favorites">Favoritos</string>
+    <string name="Acciones">Acciones</string>
+    <string name="nuevo_escaneo">Escanear</string>
+    <string name="limpiar_historial">Vaciar Historial</string>
+    <string name="historial_limpiado">¡Historial eliminado!</string>
+    <string name="copied_to_clipboard">¡Enlace copiado!</string>
+    <string name="tipo">Tipo</string>
+    <string name="nombre">Nombre</string>
+    <string name="editar_enlace">Editar Enlace</string>
+    <string name="eliminar_confirmacion_titulo">Eliminar Enlace</string>
+    <string name="eliminar_confirmacion_cuerpo">¿Estás seguro de eliminar el siguiente enlace?</string>
+    <string name="si">si</string>
+    <string name="no">no</string>
+    <string name="scanner_error">Scanner error: %s</string>
+    <string name="shareOn">Compartir en</string>
+
+
+    <string name="scan_result">Resultado del escaneo</string>
+    <string name="code_scanner">Code Scanner</string>
+    <string name="close">Cerrar</string>
+    <string name="copy">Copiar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="update">Actualizar</string>
+
+
+    <string name="enlace_name_hint">Nombre del enlace...</string>
+    <string name="enlace_link_hint">URL del enlace...</string>
+    <string name="enlace_type_hint">Tipo de enlace...</string>
+
+    <string name="dialog_edit_nombre_title">Introduce el nombre del enlace</string>
+    <string name="dialog_edit_nombre_hint">Nombre...</string>
+
+    <string name="updateOK">Actualizado con éxito</string>
+    <string name="updateERROR">ERROR: No se pudo actualizar</string>
+    <string name="deleteOK">Eliminado con éxito</string>
+    <string name="deleteERROR">ERROR: No se pudo eliminar</string>
+
+    <string name="nombrenovalido">No se ha introducido un nombre válido</string>
+    <string name="downloadPDFerror">Ha ocurrido un error en la descarga</string>
+
+
+    <string-array name="ORDENES">
+        <item>@string/recents</item>
+        <item>@string/favorites</item>
+
+
+    </string-array>
+
+
+</resources>

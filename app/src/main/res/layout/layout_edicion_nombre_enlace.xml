@@ -12,7 +12,7 @@
         android:textColor="@android:color/black"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:text="Introduce el nombre del enlace"/>
+        android:text="@string/dialog_edit_nombre_title"/>
 
     <EditText
         android:id="@+id/ed_EditURL"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
-        android:hint="Nombre..."/>
+        android:hint="@string/dialog_edit_nombre_hint"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,14 +36,14 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="Cancelar"/>
+            android:text="@string/cancel"/>
         <Button
             android:id="@+id/btn_saveEditURL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="Actualizar"/>
+            android:text="@string/update"/>
     </LinearLayout>
 
 </LinearLayout>

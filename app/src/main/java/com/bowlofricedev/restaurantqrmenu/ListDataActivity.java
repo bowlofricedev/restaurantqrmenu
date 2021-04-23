@@ -67,7 +67,7 @@ public class ListDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                animateFab3();
-                Toast toast1 = Toast.makeText(getApplicationContext(), "HISTORY CLEARED", Toast.LENGTH_SHORT);
+                Toast toast1 = Toast.makeText(getApplicationContext(), String.valueOf(R.string.historial_limpiado), Toast.LENGTH_SHORT);
                 toast1.show();
                 Boolean clearedHistory = mDatabaseHelper.deleteAllRecords();
                 if (clearedHistory) {
@@ -86,7 +86,7 @@ public class ListDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                animateFab3();
-                Toast toast1 = Toast.makeText(getApplicationContext(), "NEW SCAN", Toast.LENGTH_SHORT);
+                Toast toast1 = Toast.makeText(getApplicationContext(), String.valueOf(R.string.nuevo_escaneo), Toast.LENGTH_SHORT);
                 toast1.show();
 //                goToScan();
                 finish();

@@ -9,6 +9,39 @@
     <string name="recents">Recents</string>
     <string name="favorites">Favorites</string>
 
+    <string name="ver_historial">Ver Historial</string>
+    <string name="Acciones">Acciones</string>
+    <string name="nuevo_escaneo">Escanear</string>
+    <string name="limpiar_historial">Vaciar Historial</string>
+    <string name="historial_limpiado">¡Historial eliminado!</string>
+    <string name="tipo">Type</string>
+    <string name="nombre">Name</string>
+    <string name="editar_enlace">Edit Link</string>
+    <string name="eliminar_confirmacion_titulo">Delete Link</string>
+    <string name="eliminar_confirmacion_cuerpo">Are you sure to delete the following link?</string>
+    <string name="si">yes</string>
+    <string name="no">no</string>
+    <string name="enlace_name_hint">Link name...</string>
+    <string name="enlace_link_hint">Link URL...</string>
+    <string name="enlace_type_hint">Link Type...</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+
+
+    <string name="dialog_edit_nombre_title">Type a new name to your link</string>
+    <string name="dialog_edit_nombre_hint">Name...</string>
+
+    <string name="shareOn">Share on</string>
+    <string name="updateOK">Successfully updated</string>
+    <string name="updateERROR">Update ERROR</string>
+    <string name="deleteOK">Successfully deleted</string>
+    <string name="deleteERROR">Delete ERROR</string>
+
+    <string name="nombrenovalido">Invalid name</string>
+    <string name="downloadPDFerror">Download ERROR</string>
+
+
     <string-array name="ORDENES">
         <item>@string/recents</item>
         <item>@string/favorites</item>

@@ -119,7 +119,21 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
             @Override
             public boolean onLongClick(View v) {
 
-                new DialogEditEnlace(v.getContext(), item);
+//                new DialogEditEnlace(v.getContext(), item);
+
+                try{
+                    //copiamos enlace al portapapeles
+                    ClipboardManager clipboard = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("label", item.getUrl());
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast toast1 = Toast.makeText(mContext, String.valueOf(R.string.copied_to_clipboard), Toast.LENGTH_SHORT);
+                    toast1.show();
+
+                }catch (Exception ex){
+
+                }
+
 
                 return false;
             }
@@ -161,7 +175,7 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
                     ClipData clip = ClipData.newPlainText("label", item.getUrl());
                     clipboard.setPrimaryClip(clip);
 
-                    Toast toast1 = Toast.makeText(mContext, "Copied to clipboard", Toast.LENGTH_SHORT);
+                    Toast toast1 = Toast.makeText(mContext, String.valueOf(R.string.copied_to_clipboard), Toast.LENGTH_SHORT);
                     toast1.show();
 
                     shareUrl(item.getUrl());
@@ -179,18 +193,23 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
             @Override
             public void onClick(View v) {
 
+                String cuerpo = mContext.getResources().getString(R.string.eliminar_confirmacion_cuerpo);
+                cuerpo = cuerpo + "\n\n"+item.getName();
+                String si = mContext.getResources().getString(R.string.si);
+                String no = mContext.getResources().getString(R.string.no);
+
                 new AlertDialog.Builder(v.getContext())
                         .setIcon(R.drawable.ic_baseline_delete_24)
-                        .setTitle("Eliminar Enlace")
-                        .setMessage("¿Estas seguro de eliminar el enlace: '" + item.getName() + "'?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.eliminar_confirmacion_titulo)
+                        .setMessage(cuerpo)
+                        .setPositiveButton(si, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 deleteEnlace(item, position, viewHolder);
                             }
 
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -207,11 +226,15 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
 
     private void shareUrl(String url) {
 
+        //package name (será en nombre en google play)
+        final String appPackageName = mContext.getPackageName(); // getPackageName() from Context or Activity object
+
+
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, url +" \n Shared by Restaurant QR Menu");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, url +" \nShared by Restaurant QR Menu\nhttps://play.google.com/store/apps/details?id=\\" + appPackageName);
         sendIntent.setType("text/plain");
-        mContext.startActivity(Intent.createChooser(sendIntent, "Share on")
+        mContext.startActivity(Intent.createChooser(sendIntent, String.valueOf(R.string.shareOn))
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
 
