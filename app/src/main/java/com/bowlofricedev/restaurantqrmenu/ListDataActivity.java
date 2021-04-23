@@ -156,8 +156,8 @@ public class ListDataActivity extends AppCompatActivity {
 //        ListAdapter adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
 
         //Enlace a mano
-//        Enlace prueba = new Enlace("google", "https://www.google.es", "URL", "n");
-//        enlacesList.add(prueba);
+        Enlace prueba = new Enlace("google", "https://www.google.es", "URL", "n", System.currentTimeMillis());
+        enlacesList.add(prueba);
 
         if (enlacesList.size() > 0) {
             adapter = new AdapterEnlacesSwipe(getApplicationContext(), enlacesList);

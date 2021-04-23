@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,7 +42,7 @@ public class DialogEditEnlace {
     Dialog dialog;
     private BottomSheetDialog bottomSheetDialogTitulo, bottomSheetDialogDescripcion, bottomSheetDialogURL, bottomSheetDialogImageURL;
     DialogEditEnlaceBinding binding;
-    private ImageButton btnDelete, btnSaveEnlace, btnCancel;
+    private ImageButton btnDelete, btnSaveEnlace, btnCancel, btncopyUrl, btnShareEdit;
     private TextView txtNombreEnlaceEdit, txtUrlEnlaceEdit, txtTypeEnlace;
     private DatabaseHelper mDatabaseHelper;
 
@@ -61,9 +63,12 @@ public class DialogEditEnlace {
         btnSaveEnlace = binding.btnSaveEnlace;
         btnCancel = binding.btnCreateCancelEnlace;
         btnDelete = binding.btnDeleteEnlace;
+        btnShareEdit = binding.btnShareEdit;
+        btncopyUrl = binding.copyUrl;
         txtNombreEnlaceEdit = binding.txtNombreEnlaceEdit;
         txtTypeEnlace = binding.txtTipoUrlEdit;
         txtUrlEnlaceEdit = binding.txtUrlEnlaceEdit;
+
 
 
         txtNombreEnlaceEdit.setText(enlaceDatos.getName());
@@ -171,6 +176,39 @@ public class DialogEditEnlace {
 
 
         dialog.show();
+
+
+        btncopyUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    //copiamos enlace al portapapeles
+                    ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("label", binding.txtUrlEnlaceEdit.getText());
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast toast1 = Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT);
+                    toast1.show();
+
+                }catch (Exception ex){
+
+                }
+            }
+        });
+
+        btnShareEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, binding.txtUrlEnlaceEdit.getText()+" \n Shared by Restaurant QR Menu");
+                sendIntent.setType("text/plain");
+                context.startActivity(sendIntent);
+
+            }
+        });
+
     }
 
     private void updateView() {

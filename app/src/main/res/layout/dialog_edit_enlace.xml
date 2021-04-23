@@ -21,17 +21,44 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_baseline_camera_alt_24_white">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/colorPrimary"
                     android:padding="10dp"
-                    android:id="@+id/txtEditEnlaceTitle"
-                    android:text="Editar Enlace"
-                    android:textColor="@android:color/white"
+                    android:background="@color/colorPrimary"
+                    android:orientation="horizontal">
 
-                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/txtEditEnlaceTitle"
+                        android:text="Editar Enlace"
+                        android:textColor="@android:color/white"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:id="@+id/emptySpace"
+                        android:text=""
+                        android:textColor="@android:color/white"
+
+                        />
+
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_share_24"
+                        android:background="@color/colorPrimary"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="3dp"
+                        android:id="@+id/btnShareEdit"
+                        />
+
+                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -135,11 +162,12 @@
                         android:textSize="15sp" />
 
                     <ImageButton
+                        android:id="@+id/copyUrl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_baseline_edit_24"
-                        android:visibility="invisible"
+                        android:src="@drawable/ic_baseline_file_copy_24"
+                        android:visibility="visible"
                         android:tint="#7A7A7A" />
                 </LinearLayout>
 
