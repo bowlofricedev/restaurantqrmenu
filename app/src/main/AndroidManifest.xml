@@ -22,7 +22,6 @@
         <activity
             android:name=".ScanResultDialog"
             tools:ignore="Instantiatable" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".CodeScannerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

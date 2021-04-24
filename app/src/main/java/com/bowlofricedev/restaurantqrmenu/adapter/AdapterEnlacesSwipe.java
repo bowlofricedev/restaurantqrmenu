@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bowlofricedev.restaurantqrmenu.DialogEditEnlace;
+import com.bowlofricedev.restaurantqrmenu.PdfViewerActivity;
 import com.bowlofricedev.restaurantqrmenu.R;
 import com.bowlofricedev.restaurantqrmenu.WebviewActivity;
 import com.bowlofricedev.restaurantqrmenu.beans.Enlace;
@@ -104,14 +105,39 @@ public class AdapterEnlacesSwipe extends RecyclerSwipeAdapter<AdapterEnlacesSwip
         viewHolder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentWB = new Intent(mContext, WebviewActivity.class);
-                intentWB.putExtra("url", item.getUrl());
-                try {
-                    mContext.startActivity(intentWB);
-                } catch (AndroidRuntimeException e) {
-                    intentWB.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    mContext.startActivity(intentWB);
+
+                if (item.getType().equals("PDF")) {
+
+                    //Si es PDF
+                    Intent intentPDF = new Intent(mContext, PdfViewerActivity.class);
+                    intentPDF.putExtra("url", item.getUrl());
+                    try{
+                        mContext.startActivity(intentPDF);
+                    } catch (AndroidRuntimeException e){
+                        intentPDF.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(intentPDF);
+                    }
+
+
+
+                }else{
+
+                    //Si es WB
+                    Intent intentWB = new Intent(mContext, WebviewActivity.class);
+                    intentWB.putExtra("url", item.getUrl());
+                    try {
+                        mContext.startActivity(intentWB);
+                    } catch (AndroidRuntimeException e) {
+                        intentWB.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(intentWB);
+                    }
+
                 }
+
+
+
+
+
             }
         });
 

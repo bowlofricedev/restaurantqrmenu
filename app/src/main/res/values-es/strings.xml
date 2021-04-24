@@ -19,6 +19,7 @@
     <string name="no">no</string>
     <string name="scanner_error">Scanner error: %s</string>
     <string name="shareOn">Compartir en</string>
+    <string name="nohayenlaces">Todavía no hay enlaces</string>
 
 
     <string name="scan_result">Resultado del escaneo</string>

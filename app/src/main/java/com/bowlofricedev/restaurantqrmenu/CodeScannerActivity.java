@@ -35,16 +35,11 @@ public class CodeScannerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_scanner);
-        
+
         initComponents();
 
         mCodeScanner = new CodeScanner(this, findViewById(R.id.scanner));
         mCodeScanner.setDecodeCallback(result -> runOnUiThread(() -> {
-
-            //cuando tiene el result por defecto abre dialog
-//            ScanResultDialog dialog = new ScanResultDialog(this, result);
-//            dialog.setOnDismissListener(d -> mCodeScanner.startPreview());
-//            dialog.show();
 
             //lo cambiamos a que cuando tenga el result lo guarde en bd y se abra
 
@@ -52,14 +47,14 @@ public class CodeScannerActivity extends AppCompatActivity {
             //preparamos el enlace que acabamos de crear
             Enlace enlace = new Enlace(result.getText(), result.getText(), "HTTP", "n", System.currentTimeMillis());
 
-            if(result.getText().contains(".pdf")){
+            if (result.getText().contains(".pdf")) {
 
                 enlace.setType("PDF");
 
             }
             mDatabaseHelper = new DatabaseHelper(getApplicationContext());
             Enlace enlaceRepetido = checkRepetido(result.getText());
-            if(enlaceRepetido == null){
+            if (enlaceRepetido == null) {
                 //inicializamos db
 
                 boolean insertData = mDatabaseHelper.addData(enlace);
@@ -68,42 +63,35 @@ public class CodeScannerActivity extends AppCompatActivity {
 
                     //si se ha insertado bien lo abrimos
                     //si contiene .pdf, abrimos pdfviewer
-                    if(enlace.getType().equals("PDF")){
+                    if (enlace.getType().equals("PDF")) {
 
                         openPdf(enlace.getUrl());
 
-                    }else{
+                    } else {
                         //si no contiene .pdf abrimos WB
                         openLink(enlace.getUrl());
 
                     }
-//                Intent intentLista = new Intent(getApplicationContext(), ListDataActivity.class);
-//                getApplicationContext().startActivity(intentLista);
-
 
                 } else {
 
                 }
-            }
-            else{
+            } else {
                 boolean updateEnlace = mDatabaseHelper.updateEnlace(enlaceRepetido.getId(), enlaceRepetido);
 
                 if (updateEnlace) {
 
                     //si se ha insertado bien lo abrimos
                     //si contiene .pdf, abrimos pdfviewer
-                    if(enlaceRepetido.getType().equals("PDF")){
+                    if (enlaceRepetido.getType().equals("PDF")) {
 
                         openPdf(enlaceRepetido.getUrl());
 
-                    }else{
+                    } else {
                         //si no contiene .pdf abrimos WB
                         openLink(enlaceRepetido.getUrl());
 
                     }
-//                Intent intentLista = new Intent(getApplicationContext(), ListDataActivity.class);
-//                getApplicationContext().startActivity(intentLista);
-
 
                 } else {
 
@@ -115,18 +103,15 @@ public class CodeScannerActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 mPermissionGranted = false;
-                requestPermissions(new String[] {Manifest.permission.CAMERA}, RC_PERMISSION);
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, RC_PERMISSION);
             } else {
                 mPermissionGranted = true;
             }
         } else {
             mPermissionGranted = true;
         }
-        
-        
-        
-        
-        
+
+
     }
 
     private Enlace checkRepetido(String url) {
@@ -137,7 +122,7 @@ public class CodeScannerActivity extends AppCompatActivity {
         while (data.moveToNext()) {
 
 
-            if(data.getString(2).equalsIgnoreCase(url)){
+            if (data.getString(2).equalsIgnoreCase(url)) {
                 repetido = new Enlace();
 
                 repetido.setId(data.getInt(0));
@@ -158,9 +143,9 @@ public class CodeScannerActivity extends AppCompatActivity {
 
         Intent intentPDF = new Intent(getBaseContext(), PdfViewerActivity.class);
         intentPDF.putExtra("url", url);
-        try{
+        try {
             getApplicationContext().startActivity(intentPDF);
-        } catch (AndroidRuntimeException e){
+        } catch (AndroidRuntimeException e) {
             intentPDF.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(intentPDF);
         }
@@ -171,9 +156,9 @@ public class CodeScannerActivity extends AppCompatActivity {
     private void openLink(String url) {
         Intent intentWB = new Intent(getBaseContext(), WebviewActivity.class);
         intentWB.putExtra("url", url);
-        try{
+        try {
             getApplicationContext().startActivity(intentWB);
-        } catch (AndroidRuntimeException e){
+        } catch (AndroidRuntimeException e) {
             intentWB.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(intentWB);
         }
@@ -220,4 +205,5 @@ public class CodeScannerActivity extends AppCompatActivity {
     protected void onPause() {
         mCodeScanner.releaseResources();
         super.onPause();
-    }}
+    }
+}

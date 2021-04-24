@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:padding="10dp"
-            android:text="Todavía no hay enlaces"
+            android:text="@string/nohayenlaces"
             android:textAlignment="center"
             android:textColor="@color/colorNegro"
             android:textSize="20sp"

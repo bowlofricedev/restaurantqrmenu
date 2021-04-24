@@ -41,6 +41,8 @@
     <string name="nombrenovalido">Invalid name</string>
     <string name="downloadPDFerror">Download ERROR</string>
 
+    <string name="nohayenlaces">No links found</string>
+
 
     <string-array name="ORDENES">
         <item>@string/recents</item>

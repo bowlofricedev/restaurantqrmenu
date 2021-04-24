@@ -113,13 +113,13 @@ public class DialogEditEnlace {
 
                 //TODO: hacer mas limpio
                 if (ok) {
-                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.updateOK), Toast.LENGTH_SHORT);
+                    Toast toast1 = Toast.makeText(context, context.getResources().getString(R.string.updateOK), Toast.LENGTH_SHORT);
                     toast1.show();
 
                     updateView();
 
                 } else {
-                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.updateERROR), Toast.LENGTH_SHORT);
+                    Toast toast1 = Toast.makeText(context, context.getResources().getString(R.string.updateERROR), Toast.LENGTH_SHORT);
                     toast1.show();
                 }
 
@@ -155,13 +155,13 @@ public class DialogEditEnlace {
                                 boolean ok = mDatabaseHelper.deleteEnlace(enlaceDatos.getId());
                                 //TODO: hacer mas limpio
                                 if (ok) {
-                                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.deleteOK), Toast.LENGTH_SHORT);
+                                    Toast toast1 = Toast.makeText(context, context.getResources().getString(R.string.deleteOK), Toast.LENGTH_SHORT);
                                     toast1.show();
 
                                     updateView();
 
                                 } else {
-                                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.deleteERROR), Toast.LENGTH_SHORT);
+                                    Toast toast1 = Toast.makeText(context, context.getResources().getString(R.string.deleteERROR), Toast.LENGTH_SHORT);
                                     toast1.show();
                                 }
                             }
@@ -191,7 +191,7 @@ public class DialogEditEnlace {
                     ClipData clip = ClipData.newPlainText("label", binding.txtUrlEnlaceEdit.getText());
                     clipboard.setPrimaryClip(clip);
 
-                    Toast toast1 = Toast.makeText(context, String.valueOf(R.string.copied_to_clipboard), Toast.LENGTH_SHORT);
+                    Toast toast1 = Toast.makeText(context, context.getResources().getString(R.string.copied_to_clipboard), Toast.LENGTH_SHORT);
                     toast1.show();
 
                 }catch (Exception ex){
@@ -247,7 +247,7 @@ public class DialogEditEnlace {
                 EditText ed_EditURL = view.findViewById(R.id.ed_EditURL);
 
                 if (TextUtils.isEmpty(ed_EditURL.getText().toString())) {
-                    Toast.makeText(context, String.valueOf(R.string.nombrenovalido), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.nombrenovalido), Toast.LENGTH_SHORT).show();
 
                 } else {
 

@@ -42,8 +42,6 @@ public class ListDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_data);
 
-        initComponents();
-
         rvEnlaces = (RecyclerView) findViewById(R.id.rvEnlaces);
         emptyEnlaces = findViewById(R.id.emptyEnlaces);
         mDatabaseHelper = new DatabaseHelper(this);
@@ -120,13 +118,7 @@ public class ListDataActivity extends AppCompatActivity {
 
     }
 
-    private void initComponents() {
 
-
-
-
-
-    }
 
     private void goToScan() {
 
@@ -152,12 +144,11 @@ public class ListDataActivity extends AppCompatActivity {
             enlacesList.add(enlace);
 
         }
-        //creamos listadapter
-//        ListAdapter adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
 
         //Enlace a mano
-        Enlace prueba = new Enlace("google", "https://www.google.es", "URL", "n", System.currentTimeMillis());
-        enlacesList.add(prueba);
+
+//        Enlace prueba = new Enlace("google", "https://www.google.es", "URL", "n", System.currentTimeMillis());
+//        enlacesList.add(prueba);
 
         if (enlacesList.size() > 0) {
             adapter = new AdapterEnlacesSwipe(getApplicationContext(), enlacesList);
