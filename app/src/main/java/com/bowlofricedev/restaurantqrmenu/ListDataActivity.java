@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,8 @@ public class ListDataActivity extends AppCompatActivity {
     private boolean isfab3Open = false;
     private Spinner spinnerOrdenes;
     private String orden, columna;
+    private EditText txtBusqueda;
+    ArrayList<Enlace> enlacesList;
 
 
     @Override
@@ -44,6 +49,7 @@ public class ListDataActivity extends AppCompatActivity {
 
         rvEnlaces = (RecyclerView) findViewById(R.id.rvEnlaces);
         emptyEnlaces = findViewById(R.id.emptyEnlaces);
+        txtBusqueda = findViewById(R.id.txtBusqueda);
         mDatabaseHelper = new DatabaseHelper(this);
 
         spinnerOrdenes = findViewById(R.id.spinnerOrdenes);
@@ -101,18 +107,39 @@ public class ListDataActivity extends AppCompatActivity {
                 }
                 else if (i == 1){
                     columna = DatabaseHelper.COL5;
-                    orden = "ASC";
+                    orden = "DESC";
                 }
                 populateRV();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                columna = DatabaseHelper.COL1;
+                columna = DatabaseHelper.COL6;
                 orden = "DESC";
                 populateRV();
             }
         });
+
+        txtBusqueda.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                populateRV();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
 
         //populateRV();
 
@@ -128,8 +155,29 @@ public class ListDataActivity extends AppCompatActivity {
 
     private void populateRV() {
         //recogemos datos y llenamos la lista
-        Cursor data = mDatabaseHelper.getData(columna, orden);
-        ArrayList<Enlace> enlacesList = new ArrayList<>();
+        loadEnlaces();
+
+
+        //Enlace a mano
+
+//        Enlace prueba = new Enlace("google", "https://www.google.es", "URL", "n", System.currentTimeMillis());
+//        enlacesList.add(prueba);
+
+        if (enlacesList.size() > 0) {
+            rvEnlaces.setVisibility(View.VISIBLE);
+            adapter = new AdapterEnlacesSwipe(getApplicationContext(), enlacesList);
+            rvEnlaces.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            rvEnlaces.setAdapter(adapter);
+            emptyEnlaces.setVisibility(View.INVISIBLE);
+        } else {
+            rvEnlaces.setVisibility(View.INVISIBLE);
+            emptyEnlaces.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void loadEnlaces() {
+        Cursor data = mDatabaseHelper.getDataSearch(columna, "DESC", '%' + txtBusqueda.getText().toString() + '%');
+        enlacesList = new ArrayList<>();
 
         while (data.moveToNext()) {
 
@@ -143,20 +191,6 @@ public class ListDataActivity extends AppCompatActivity {
 
             enlacesList.add(enlace);
 
-        }
-
-        //Enlace a mano
-
-//        Enlace prueba = new Enlace("google", "https://www.google.es", "URL", "n", System.currentTimeMillis());
-//        enlacesList.add(prueba);
-
-        if (enlacesList.size() > 0) {
-            adapter = new AdapterEnlacesSwipe(getApplicationContext(), enlacesList);
-            rvEnlaces.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-            rvEnlaces.setAdapter(adapter);
-            emptyEnlaces.setVisibility(View.INVISIBLE);
-        } else {
-            emptyEnlaces.setVisibility(View.VISIBLE);
         }
     }
 

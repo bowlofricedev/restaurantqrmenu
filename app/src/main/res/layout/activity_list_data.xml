@@ -44,6 +44,13 @@
         </LinearLayout>
 
 
+        <EditText
+            android:id="@+id/txtBusqueda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/busqueda" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvEnlaces"
             android:layout_width="match_parent"
@@ -68,49 +75,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp">
 
-
-            <!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_alignParentBottom="true"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_marginEnd="10dp"-->
-            <!--                android:src="@drawable/ic_baseline_more_horiz_24"-->
-            <!--                android:tint="@color/colorBlanco"-->
-            <!--                android:backgroundTint="@color/colorPrimary"-->
-            <!--                android:layout_marginBottom="10dp"-->
-            <!--                android:id="@+id/fab_new_scan"-->
-            <!--                >-->
-
-            <!--            </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
-
-
-            <!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-            <!--                android:id="@+id/fab"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_alignParentBottom="true"-->
-            <!--                android:layout_marginEnd="10dp"-->
-            <!--                android:layout_marginBottom="10dp"-->
-            <!--                android:backgroundTint="@color/colorPrimary"-->
-            <!--                android:src="@drawable/ic_baseline_more_horiz_24"-->
-            <!--                android:tint="@color/colorBlanco" />-->
-
-
-            <!--            <ImageButton-->
-
-
-            <!--                android:layout_marginTop="10dp"-->
-            <!--                android:id="@+id/btnClearList"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:backgroundTint="@android:color/holo_red_light"-->
-            <!--                android:tint="@android:color/white"-->
-            <!--                android:src="@drawable/ic_baseline_delete_24"-->
-            <!--                android:layout_alignParentBottom="true"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                />-->
 
             <com.nambimobile.widgets.efab.ExpandableFabLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -42,6 +42,7 @@
     <string name="downloadPDFerror">Download ERROR</string>
 
     <string name="nohayenlaces">No links found</string>
+    <string name="busqueda">Search...</string>
 
 
     <string-array name="ORDENES">

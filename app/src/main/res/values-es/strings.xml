@@ -44,6 +44,7 @@
 
     <string name="nombrenovalido">No se ha introducido un nombre válido</string>
     <string name="downloadPDFerror">Ha ocurrido un error en la descarga</string>
+    <string name="busqueda">Busqueda...</string>
 
 
     <string-array name="ORDENES">

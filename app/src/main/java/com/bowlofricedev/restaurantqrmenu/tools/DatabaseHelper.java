@@ -74,6 +74,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor getDataSearch(String col, String order, String search){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_NAME;
+        //String[] columns = new String[] {COL1, COL2, COL3, COL4, COL5, COL6};
+        String[] args = new String[] {search, search};
+        Cursor data = db.query(TABLE_NAME, null, COL2 + " LIKE ? OR " + COL3 + " LIKE ? ", args, null, null, col + " " + order);
+        return data;
+    }
+
     public boolean deleteEnlace(int id){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -103,6 +112,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, null, null) > 0;
 
+        //TODO: CONTROLAR QUE SE HACE BIEN
     }
 
 }
